@@ -49,10 +49,6 @@ export default {
             type: String,
             default: ''
         },
-        realisateurName: {
-            type: String,
-            default: 'est'
-        },
         realisateurNom: {
             type: String,
             default: ''

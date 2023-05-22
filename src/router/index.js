@@ -1,18 +1,29 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import EditMovie from '@/views/EditMovie.vue'
-import AllMovies from '@/views/AllMovies.vue'
-// import sourceData from '@/data.json'
+import Home from '@/views/Home.vue'
+import CreateMovie from '@/views/CreateMovie.vue'
+import DetailMovie from '@/views/DetailMovie.vue'
 
 const routes = [
     {
         path: '/',
-        name: 'AllMovies',
-        component: AllMovies
+        name: 'home',
+        component: Home
+    },
+    {
+        path: '/movies/new',
+        name: 'create',
+        component: CreateMovie
     },
     {
         path: '/movies/:id/edit',
         name: 'edit',
         component: EditMovie
+    },
+    {
+        path: '/movies/:id',
+        name: 'detail',
+        component: DetailMovie
     }
     // {
     //     path: '/invoices',
