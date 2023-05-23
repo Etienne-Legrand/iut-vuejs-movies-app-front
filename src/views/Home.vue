@@ -1,25 +1,29 @@
 <template>
   <div class="movie">
-    <h1>Movie App</h1>
+    <!-- <h1>Movie App</h1> -->
 
     <!-- Ajouter un film -->
-    <router-link :to="{ name: 'create' }">Ajouter un film</router-link>
+    <!-- <router-link :to="{ name: 'create' }">Ajouter un film</router-link> -->
 
     <!-- Rechercher un film -->
-    <h3>Rechercher un film</h3>
-    <div>
-      <label for="search">Rechercher : </label>
-      <input type="text" v-model="search" id="search">
-    </div>
+    <v-card class="mx-auto mb-10" color="grey-lighten-3" max-width="400">
+      <v-card-text>
+        <v-text-field density="compact" variant="solo" label="Rechercher un film" append-inner-icon="mdi-magnify"
+          single-line hide-details v-model="search"></v-text-field>
+      </v-card-text>
+    </v-card>
 
     <!-- Liste des films -->
-    <h3>Liste des films</h3>
-    <ul>
-      <li v-for="movie in filteredMovies" @click="goToDetailMovie(movie._id)" :key="movie._id">
-        <MovieItem :movie="movie" />
-        <!-- @edit="goToEditMovie(movie._id)" @delete="deleteMovie(movie._id)" -->
-      </li>
-    </ul>
+    <h3 class="ms-5">Liste des films</h3>
+    <v-card class="mx-auto">
+      <v-container fluid>
+        <v-row dense>
+          <v-col v-for="movie in filteredMovies" :key="movie._id" cols="1">
+            <MovieItem :movie="movie" />
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-card>
 
     <!-- <p>Première lettre : {{ movieTitleFirstLetter }}</p> -->
     <p>Nombre total de films : {{ numberOfMovies }}</p>

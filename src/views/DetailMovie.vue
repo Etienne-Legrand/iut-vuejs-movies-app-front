@@ -20,11 +20,14 @@
             <strong>Genre:</strong> {{ movie.genre }}
         </div>
         <div>
-            <img :src="movie.poster" alt="Poster du film">
+            <img :style="{ 'max-width': '200px' }" :src="movie.poster" alt="Poster du film">
         </div>
+
         <div>
-            <button @click="goToEditMovie(movie._id)">Editer</button>
-            <button @click="confirmDeleteMovie(movie._id)">Supprimer</button>
+            <v-btn class="me-5 text-none text-subtitle-1 text-white" color="#5865f2" variant="elevated"
+                @click="goToEditMovie(movie._id)">Editer</v-btn>
+            <v-btn class="me-5 text-none text-subtitle-1 text-white" color="red" variant="elevated"
+                @click="confirmDeleteMovie(movie._id)">Supprimer</v-btn>
         </div>
     </div>
     <div v-else>

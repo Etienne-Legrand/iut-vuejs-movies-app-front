@@ -1,12 +1,6 @@
 <template>
     <div v-if="Object.keys(movie).length !== 0">
-        <FormMovie label="Modifier un film" v-model:titre="movie.titre" v-model:anneeDeSortie="movie.anneeDeSortie"
-            v-model:langue="movie.langue" v-model:realisateurNom="movie.realisateur.nom"
-            v-model:realisateurNationalite="movie.realisateur.nationalite"
-            v-model:realisateurDateDeNaissance="movie.realisateur.dateDeNaissance" v-model:genre="movie.genre"
-            v-model:poster="movie.poster" />
-
-        <button v-on:click="editMovie(movie._id)">Enregistrer</button>
+        <FormMovie labelTitre="Modifier un film" :movie="movie" @getMovie="editMovie" />
     </div>
     <div v-else>
         <p>Film introuvable</p>
@@ -40,8 +34,8 @@ export default {
                     console.log(error);
                 });
         },
-        editMovie(id) {
-            axios.patch(`http://185.212.226.104/api/movies/${id}`, this.movie)
+        editMovie(movie) {
+            axios.patch(`http://185.212.226.104/api/movies/${movie._id}`, movie)
                 .then(response => {
                     console.log(response.data);
                     this.$router.push({ name: 'home' });

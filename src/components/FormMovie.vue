@@ -1,76 +1,45 @@
 <template>
-    <h3>{{ label }}</h3>
+    <h3>{{ labelTitre }}</h3>
 
-    <label for="titre">Titre :</label>
-    <input type="text" id="titre" :value="titre" @input="$emit('update:titre', $event.target.value)"><br>
+    <v-text-field label="Titre" v-model="localMovie.titre"></v-text-field>
+    <v-text-field label="Année de sortie" v-model="localMovie.anneeDeSortie"></v-text-field>
+    <v-text-field label="Langue" v-model="localMovie.langue"></v-text-field>
+    <v-text-field label="Nom du réalisateur" v-model="localMovie.realisateur.nom"></v-text-field>
+    <v-text-field label="Nationalité du réalisateur" v-model="localMovie.realisateur.nationalite"></v-text-field>
+    <v-text-field label="Date de naissance du réalisateur" v-model="localMovie.realisateur.dateDeNaissance"></v-text-field>
+    <v-text-field label="Genre" v-model="localMovie.genre"></v-text-field>
+    <v-text-field label="URL du poster" v-model="localMovie.poster"></v-text-field>
 
-    <label for="annee">Année de sortie :</label>
-    <input type="text" id="annee" :value="anneeDeSortie" @input="$emit('update:anneeDeSortie', $event.target.value)"><br>
-
-    <label for="langue">Langue :</label>
-    <input type="text" id="langue" :value="langue" @input="$emit('update:langue', $event.target.value)"><br>
-
-    <label for="realisateur-nom">Nom du réalisateur :</label>
-    <input type="text" id="realisateur-nom" :value="realisateurNom"
-        @input="$emit('update:realisateurNom', $event.target.value)"><br>
-
-    <label for="realisateur-nationalite">Nationalité du réalisateur :</label>
-    <input type="text" id="realisateur-nationalite" :value="realisateurNationalite"
-        @input="$emit('update:realisateurNationalite', $event.target.value)"><br>
-
-    <label for="realisateur-date-naissance">Date de naissance du réalisateur :</label>
-    <input type="text" id="realisateur-date-naissance" :value="realisateurDateDeNaissance"
-        @input="$emit('update:realisateurDateDeNaissance', $event.target.value)"><br>
-
-    <label for="genre">Genre :</label>
-    <input type="text" id="genre" :value="genre" @input="$emit('update:genre', $event.target.value)"><br>
-
-    <label for="poster">URL du poster :</label>
-    <input type="text" id="poster" :value="poster" @input="$emit('update:poster', $event.target.value)"><br>
+    <v-btn color="green" v-on:click="sendMovie">Enregistrer</v-btn>
 </template>
   
 <script>
 export default {
     name: 'FormMovie',
     props: {
-        label: {
-            type: String,
-            default: 'Label'
+        movie: {
+            type: Object,
+            required: true
         },
-        titre: {
+        labelTitre: {
             type: String,
-            default: ''
-        },
-        anneeDeSortie: {
-            type: String,
-            default: ''
-        },
-        langue: {
-            type: String,
-            default: ''
-        },
-        realisateurNom: {
-            type: String,
-            default: ''
-        },
-        realisateurNationalite: {
-            type: String,
-            default: ''
-        },
-        realisateurDateDeNaissance: {
-            type: String,
-            default: ''
-        },
-        genre: {
-            type: String,
-            default: ''
-        },
-        poster: {
-            type: String,
-            default: ''
-        },
-
+            required: true
+        }
     },
+    data: () => ({
+        localMovie: { titre: '', anneeDeSortie: '', langue: '', realisateur: { nom: '', nationalite: '', dateDeNaissance: '' }, genre: '', poster: '' }
+    }),
+    mounted() {
+        if (Object.keys(this.movie).length !== 0) {
+            this.localMovie = Object.assign({}, this.movie);
+        }
+    },
+    methods: {
+        sendMovie() {
+            this.$emit('getMovie', this.localMovie);
+        }
+    }
+
 }
 </script>
   
