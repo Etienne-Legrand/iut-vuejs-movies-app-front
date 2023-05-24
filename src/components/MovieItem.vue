@@ -11,6 +11,8 @@
             <div class="card__footer">
                 <p>Année : {{ movie.anneeDeSortie }}</p>
                 <p>De : {{ movie.realisateur.nom }}</p>
+                <v-rating v-model="rate" readonly color="grey" bg-grey active-color="yellow-darken-2" half-increments hover
+                    size="18"></v-rating>
             </div>
         </div>
     </router-link>
@@ -25,6 +27,14 @@ export default {
             type: Object,
             required: true
         },
+    },
+    data: () => ({
+        rate: null,
+    }),
+    mounted() {
+        if (Object.keys(this.movie).length !== 0) {
+            this.rate = this.movie.rate;
+        }
     },
 
 }

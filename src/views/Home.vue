@@ -3,18 +3,18 @@
     <!-- <h1>Movie App</h1> -->
 
     <!-- Rechercher un film -->
-    <v-card class="mx-auto mb-10" color="grey-lighten-3" max-width="700">
+    <v-card class="mx-auto mb-10" color="grey-lighten-3" max-width="600">
       <v-card-text>
         <v-text-field density="compact" variant="solo"
-          label="Rechercher un film par son titre, sa date de sortie ou le nom du réalisateur"
-          append-inner-icon="mdi-magnify" single-line hide-details v-model="search"></v-text-field>
+          label="Rechercher un film par son titre, son année ou le nom du réalisateur" append-inner-icon="mdi-magnify"
+          single-line hide-details v-model="search"></v-text-field>
       </v-card-text>
     </v-card>
 
     <!-- Liste des films -->
-    <h3 class="ms-5">Liste des films</h3>
-    <v-sheet class="d-flex flex-wrap">
-      <v-sheet v-for="movie in filteredMovies" :key="movie._id" class="ma-2">
+    <!-- <h3 class="ms-5 text-center">Liste des films</h3> -->
+    <v-sheet class="d-flex flex-wrap justify-center bg-blue-grey-lighten-4">
+      <v-sheet v-for="movie in filteredMovies" :key="movie._id" class="ma-2 bg-blue-grey-lighten-4">
         <MovieItem :movie="movie" />
       </v-sheet>
     </v-sheet>
@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       movies: [],
-      newMovie: { titre: '', anneeDeSortie: '', langue: '', realisateur: { nom: '', nationalite: '', dateDeNaissance: '' }, genre: '', poster: '' },
+      newMovie: { titre: '', anneeDeSortie: '', langue: '', realisateur: { nom: '', nationalite: '', dateDeNaissance: '' }, genre: '', poster: '', rate: null },
       search: "",
     }
   },
@@ -68,7 +68,7 @@ export default {
     filteredMovies() {
       return this.movies.filter(movie => {
         const { titre, anneeDeSortie, realisateur } = movie;
-        const searchString = `${titre} ${anneeDeSortie} ${realisateur}`.toLowerCase();
+        const searchString = `${titre} ${anneeDeSortie} ${realisateur.nom}`.toLowerCase();
         return searchString.includes(this.search.toLowerCase());
       });
     }

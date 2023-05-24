@@ -8,7 +8,7 @@
       <v-btn text :to="{ name: 'home' }">Accueil</v-btn>
       <v-btn text :to="{ name: 'create' }">Ajouter un film</v-btn>
     </v-app-bar>
-    <v-main class="mt-5">
+    <v-main class="mt-5 bg-blue-grey-lighten-4">
       <router-view />
     </v-main>
   </v-app>

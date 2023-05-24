@@ -15,36 +15,33 @@ export default {
     },
     data() {
         return {
-            movie: { titre: '', anneeDeSortie: '', langue: '', realisateur: { nom: '', nationalite: '', dateDeNaissance: '' }, genre: '', poster: '' },
+            movie: { titre: '', anneeDeSortie: '', langue: '', realisateur: { nom: '', nationalite: '', dateDeNaissance: '' }, genre: '', poster: '', rate: null },
         }
     },
     methods: {
-        createMovie(movie) {
-            // let movie2 = this.getMovieInOMDbAPI(movie);
-            console.log(this.getMovieInOMDbAPI(movie));
-
-            axios.post('http://185.212.226.104/api/movies', movie)
-                .then(response => {
-                    console.log(response.data.titre);
-                    this.$router.push({ name: 'home' });
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        },
-        getMovieInOMDbAPI(movie) {
-            if (movie.titre !== '' || movie.anneeDeSortie !== '') {
-                axios.get(`http://www.omdbapi.com/?apikey=f081af2b&t=${movie.titre}&y=${movie.anneeDeSortie}`)
-                    .then(response => {
-                        return response.data;
-
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
+        async createMovie(movie) {
+            try {
+                if (movie.titre !== '' && movie.anneeDeSortie !== '' && movie.poster === '') {
+                    const omdbData = await this.getMovieInOMDbAPI(movie);
+                    if (omdbData.Response == 'True') {
+                        movie.poster = omdbData.Poster;
+                    }
+                }
+                await axios.post('http://185.212.226.104/api/movies', movie);
+                this.$router.push({ name: 'home' });
+            } catch (error) {
+                console.error(error);
             }
-
         },
+        async getMovieInOMDbAPI(movie) {
+            try {
+                const response = await axios.get(`http://www.omdbapi.com/?apikey=f081af2b&t=${movie.titre}&y=${movie.anneeDeSortie}`);
+                return response.data;
+            } catch (error) {
+                console.error(error);
+            }
+        },
+
     },
 }
 </script>
