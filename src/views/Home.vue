@@ -1,26 +1,21 @@
 <template>
   <div class="movie">
-    <!-- <h1>Movie App</h1> -->
-
     <!-- Rechercher un film -->
-    <v-card class="mx-auto mb-10" color="grey-lighten-3" max-width="600">
+    <v-card class="mx-auto mb-10" color="blue-grey-lighten-4" max-width="600" variant="">
       <v-card-text>
-        <v-text-field density="compact" variant="solo"
+        <v-text-field density="comfortable" variant="solo"
           label="Rechercher un film par son titre, son année ou le nom du réalisateur" append-inner-icon="mdi-magnify"
           single-line hide-details v-model="search"></v-text-field>
       </v-card-text>
     </v-card>
 
     <!-- Liste des films -->
-    <!-- <h3 class="ms-5 text-center">Liste des films</h3> -->
     <v-sheet class="d-flex flex-wrap justify-center bg-blue-grey-lighten-4">
       <v-sheet v-for="movie in filteredMovies" :key="movie._id" class="ma-2 bg-blue-grey-lighten-4">
         <MovieItem :movie="movie" />
       </v-sheet>
     </v-sheet>
 
-
-    <!-- <p>Première lettre : {{ movieTitleFirstLetter }}</p> -->
     <p>Nombre total de films : {{ numberOfMovies }}</p>
   </div>
 </template>
