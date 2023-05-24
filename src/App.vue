@@ -5,7 +5,7 @@
         <router-link :to="{ name: 'home' }" class="text-decoration-none text-white">Movie App</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn text :to="{ name: 'home' }">Home</v-btn>
+      <v-btn text :to="{ name: 'home' }">Accueil</v-btn>
       <v-btn text :to="{ name: 'create' }">Ajouter un film</v-btn>
     </v-app-bar>
     <v-main class="mt-5">
@@ -24,3 +24,5 @@ export default {
   }),
 }
 </script>
+
+<style></style>

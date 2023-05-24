@@ -2,28 +2,23 @@
   <div class="movie">
     <!-- <h1>Movie App</h1> -->
 
-    <!-- Ajouter un film -->
-    <!-- <router-link :to="{ name: 'create' }">Ajouter un film</router-link> -->
-
     <!-- Rechercher un film -->
-    <v-card class="mx-auto mb-10" color="grey-lighten-3" max-width="400">
+    <v-card class="mx-auto mb-10" color="grey-lighten-3" max-width="700">
       <v-card-text>
-        <v-text-field density="compact" variant="solo" label="Rechercher un film" append-inner-icon="mdi-magnify"
-          single-line hide-details v-model="search"></v-text-field>
+        <v-text-field density="compact" variant="solo"
+          label="Rechercher un film par son titre, sa date de sortie ou le nom du réalisateur"
+          append-inner-icon="mdi-magnify" single-line hide-details v-model="search"></v-text-field>
       </v-card-text>
     </v-card>
 
     <!-- Liste des films -->
     <h3 class="ms-5">Liste des films</h3>
-    <v-card class="mx-auto">
-      <v-container fluid>
-        <v-row dense>
-          <v-col v-for="movie in filteredMovies" :key="movie._id" cols="1">
-            <MovieItem :movie="movie" />
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-card>
+    <v-sheet class="d-flex flex-wrap">
+      <v-sheet v-for="movie in filteredMovies" :key="movie._id" class="ma-2">
+        <MovieItem :movie="movie" />
+      </v-sheet>
+    </v-sheet>
+
 
     <!-- <p>Première lettre : {{ movieTitleFirstLetter }}</p> -->
     <p>Nombre total de films : {{ numberOfMovies }}</p>
@@ -66,9 +61,6 @@ export default {
     },
   },
   computed: {
-    // movieTitleFirstLetter: function () {
-    //   return this.newMovie.titre.charAt(0);
-    // },
     numberOfMovies: function () {
       return this.movies.length
     },
