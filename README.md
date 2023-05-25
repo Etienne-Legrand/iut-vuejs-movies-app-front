@@ -1,24 +1,14 @@
-# td3
+# movie-app (Etienne Legrand - DAWIN A)
 
-## Project setup
+## Installer les dépendances
 ```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
+npm install
 ```
 
-### Compiles and minifies for production
+## Démarrer le serveur
 ```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
+npm run serve
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Lien de l'api pour stocker les films
+https://gitlab-ce.iut.u-bordeaux.fr/etlegrand/api-crud-movies
