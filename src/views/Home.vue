@@ -1,7 +1,7 @@
 <template>
   <div class="movie">
     <!-- Rechercher un film -->
-    <v-card class="mx-auto mb-10" color="blue-grey-lighten-4" max-width="600" variant="">
+    <v-card class="mx-auto mb-4" color="blue-grey-lighten-4" max-width="600" variant="">
       <v-card-text>
         <v-text-field density="comfortable" variant="solo"
           label="Rechercher un film par son titre, son année ou le nom du réalisateur" append-inner-icon="mdi-magnify"
@@ -9,14 +9,19 @@
       </v-card-text>
     </v-card>
 
+    <!-- Compteur de films -->
+    <div class="d-flex justify-center mb-4">
+      <v-chip color="grey-darken-4" size="large" prepend-icon="mdi-movie-roll">
+        {{ numberOfMovies }} films disponibles
+      </v-chip>
+    </div>
+
     <!-- Liste des films -->
     <v-sheet class="d-flex flex-wrap justify-center bg-blue-grey-lighten-4">
       <v-sheet v-for="movie in filteredMovies" :key="movie._id" class="ma-2 bg-blue-grey-lighten-4">
         <MovieItem :movie="movie" />
       </v-sheet>
     </v-sheet>
-
-    <p>Nombre total de films : {{ numberOfMovies }}</p>
   </div>
 </template>
 
@@ -42,7 +47,7 @@ export default {
   },
   methods: {
     getAllMovies() {
-      axios.get('http://185.212.226.104/api/movies')
+      axios.get(`${import.meta.env.VITE_API_URL}/movies`)
         .then((response) => {
           this.movies = response.data;
           console.log(this.movies);

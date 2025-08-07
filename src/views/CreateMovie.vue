@@ -27,7 +27,7 @@ export default {
                         movie.poster = omdbData.Poster;
                     }
                 }
-                await axios.post('http://185.212.226.104/api/movies', movie);
+                await axios.post(`${import.meta.env.VITE_API_URL}/movies`, movie);
                 this.$router.push({ name: 'home' });
             } catch (error) {
                 console.error(error);
@@ -35,7 +35,7 @@ export default {
         },
         async getMovieInOMDbAPI(movie) {
             try {
-                const response = await axios.get(`http://www.omdbapi.com/?apikey=f081af2b&t=${movie.titre}&y=${movie.anneeDeSortie}`);
+                const response = await axios.get(`http://www.omdbapi.com/?apikey=${import.meta.env.VITE_OMDB_API_KEY}&t=${movie.titre}&y=${movie.anneeDeSortie}`);
                 return response.data;
             } catch (error) {
                 console.error(error);

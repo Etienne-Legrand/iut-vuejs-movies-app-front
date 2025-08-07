@@ -26,7 +26,7 @@ export default {
     },
     methods: {
         getOneMovie(id) {
-            axios.get(`http://185.212.226.104/api/movies/${id}`)
+            axios.get(`${import.meta.env.VITE_API_URL}/movies/${id}`)
                 .then((response) => {
                     this.movie = response.data;
                 })
@@ -40,7 +40,7 @@ export default {
                     const omdbData = await this.getMovieInOMDbAPI(movie);
                     movie.poster = omdbData.Poster;
                 }
-                await axios.patch(`http://185.212.226.104/api/movies/${movie._id}`, movie);
+                await axios.patch(`${import.meta.env.VITE_API_URL}/movies/${movie._id}`, movie);
                 this.$router.push({ name: 'home' });
             } catch (error) {
                 console.error(error);
@@ -48,7 +48,7 @@ export default {
         },
         async getMovieInOMDbAPI(movie) {
             try {
-                const response = await axios.get(`http://www.omdbapi.com/?apikey=f081af2b&t=${movie.titre}&y=${movie.anneeDeSortie}`);
+                const response = await axios.get(`http://www.omdbapi.com/?apikey=${import.meta.env.VITE_OMDB_API_KEY}&t=${movie.titre}&y=${movie.anneeDeSortie}`);
                 return response.data;
             } catch (error) {
                 console.error(error);

@@ -1,5 +1,5 @@
 <template>
-    <v-row justify="center">
+    <v-row justify="center" class="mb-10">
         <v-col cols="12" sm="10" md="8" lg="6">
             <v-card ref="form">
                 <v-card-text>
@@ -17,7 +17,7 @@
                         v-model="localMovie.realisateur.dateDeNaissance"></v-text-field>
                     <v-text-field label="Genre" v-model="localMovie.genre"></v-text-field>
                     <v-text-field
-                        label="URL du poster (Récupéré automatiquement si non complété en fonction du titre en anglais et de l'année de sortie)"
+                        label="URL du poster (Récupéré si vide en fonction du titre en anglais et de l'année de sortie)"
                         v-model="localMovie.poster"></v-text-field>
 
                     <div class="d-flex flex-column align-center">

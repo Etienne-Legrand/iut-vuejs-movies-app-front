@@ -1,14 +1,29 @@
-# movie-app (Etienne Legrand - DAWIN A)
+# Vue.js Movie App
 
-## Installer les dépendances
-```
-npm install
-```
+Cette application Vue.js permet d'ajouter, modifier, supprimer et consulter des films.
 
-## Démarrer le serveur
-```
-npm run serve
-```
+Lien du projet pour l'API : https://github.com/Etienne-Legrand/iut-nodejs-movies-api-back
 
-## Lien de l'api pour stocker les films
-https://gitlab-ce.iut.u-bordeaux.fr/etlegrand/api-crud-movies
+## Prérequis
+
+1. Node.js 18+
+
+## Installation
+
+1. Clonez ce dépôt sur votre machine locale.
+2. Déplacez-vous dans le répertoire du projet
+3. Exécutez la commande `npm install` pour installer les dépendances.
+
+## Utilisation
+
+1. (Optionnel) Ajouter votre clé d'API OMDB dans le fichier `.env` pour récupérer automatiquement les posters des films.
+2. Exécutez la commande `npm run dev` pour démarrer le serveur de développement.
+3. Accédez à l'url de Vite http://localhost:3001/ dans votre navigateur pour utiliser l'application.
+
+## Fonctionnalités
+
+- Voir tous les films
+- Voir le détail d'un film
+- Ajouter un film
+- Modifier un film
+- Supprimer un film

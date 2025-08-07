@@ -15,12 +15,13 @@
 </template>
 
 <script>
+import appareil_photo from './assets/appareil_photo.png'
 
 export default {
   name: 'App',
 
   data: () => ({
-    imageAppBar: require('./../public/images/appareil_photo.png'),
+    imageAppBar: appareil_photo,
   }),
 }
 </script>

@@ -15,7 +15,7 @@
                         </v-btn>
                         <v-spacer></v-spacer>
                         <v-btn class="me-5 text-none text-subtitle-1 text-white" color="#5865f2" variant="flat"
-                            @click="goToEditMovie(movie._id)">Editer</v-btn>
+                            @click="goToEditMovie(movie._id)">Modifier</v-btn>
                         <v-btn class="me-5 text-none text-subtitle-1 text-white" color="red" variant="flat"
                             @click="confirmDeleteMovie(movie._id)">Supprimer</v-btn>
                     </v-card-actions>
@@ -48,7 +48,7 @@ export default {
     },
     methods: {
         getOneMovie(id) {
-            axios.get(`http://185.212.226.104/api/movies/${id}`)
+            axios.get(`${import.meta.env.VITE_API_URL}/movies/${id}`)
                 .then((response) => {
                     this.movie = response.data;
                 })
@@ -60,7 +60,7 @@ export default {
             router.push({ name: 'edit', params: { id } });
         },
         deleteMovie(id) {
-            axios.delete(`http://185.212.226.104/api/movies/${id}`)
+            axios.delete(`${import.meta.env.VITE_API_URL}/movies/${id}`)
                 .then(response => {
                     console.log(response.data);
                     router.push({ name: 'home' });
